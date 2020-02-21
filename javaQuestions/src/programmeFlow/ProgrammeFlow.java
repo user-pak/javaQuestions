@@ -10,7 +10,8 @@ public class ProgrammeFlow {
 	
 	enum Menu {
 		
-		GRADE, MAX, MIN, SORT, RPS,
+		GRADE, MAX, MIN, SORT, RPS, SIGN, GUESS, ENUM, COUNTDOWN, ASTERISK, PLACEVALUE, 
+		FACTORIAL, STANDARDWEIGHT, DIVISOR, SQUARE, PRIMENUMBER, CALCULATION,
 		TERMINATE,
 		;
 		
@@ -18,6 +19,7 @@ public class ProgrammeFlow {
 			
 			for(Menu menu : Menu.values()) {
 				System.out.print("[" +menu.ordinal() + "]" + menu + " ");
+				if(menu.ordinal() !=0 && menu.ordinal() %10 == 0) System.out.println();
 			}
 			
 			int menuNo = sc.nextInt();
@@ -43,7 +45,18 @@ public class ProgrammeFlow {
 		case MIN : cont.min(); break;
 		case SORT : cont.sort(); break;
 		case RPS : cont.rockPaperScissors(); break;
-		
+		case SIGN : cont.sign(); break;
+		case GUESS : cont.howMany(); break;
+		case ENUM : cont.enumScope(); break;
+		case COUNTDOWN : cont.countDown(); break;
+		case ASTERISK : cont.asterisk(); break;
+		case PLACEVALUE : cont.placeValue(); break;
+		case FACTORIAL : cont.factorial(); break;
+		case STANDARDWEIGHT: cont.standardWeight(); break;
+		case DIVISOR: cont.divisor(); break;
+		case SQUARE : cont.square(); break;
+		case PRIMENUMBER : cont.primeNumber();break;
+		case CALCULATION : cont.calculation(); break;
 		}
 	}
 }
