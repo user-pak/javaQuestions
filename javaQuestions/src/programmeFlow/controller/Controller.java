@@ -1,7 +1,7 @@
 package programmeFlow.controller;
 
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
+
 
 public class Controller {
 
@@ -346,6 +346,15 @@ public class Controller {
 			}
 		}
 		if(i != 0) System.out.println("sum: " + sum + " avg: "+ sum/each);
+	}
+
+	public void realnumber() {
+		// TODO Auto-generated method stub
+//		int a = getInt(); int b = getInt(); int c = getInt();
+//		int sum = a+b+c;
+//		double avg = (double)sum/3;
+//		System.out.println("sum: " + sum + " avg: " + avg);
+		
 	}
 }
 	

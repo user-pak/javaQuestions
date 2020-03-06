@@ -11,7 +11,7 @@ public class ProgrammeFlow {
 	enum Menu {
 		
 		GRADE, MAX, MIN, SORT, RPS, SIGN, GUESS, ENUM, COUNTDOWN, ASTERISK, PLACEVALUE, 
-		FACTORIAL, STANDARDWEIGHT, DIVISOR, SQUARE, PRIMENUMBER, CALCULATION,
+		FACTORIAL, STANDARDWEIGHT, DIVISOR, SQUARE, PRIMENUMBER, CALCULATION, REAlNUMBER,
 		TERMINATE,
 		;
 		
@@ -57,6 +57,7 @@ public class ProgrammeFlow {
 		case SQUARE : cont.square(); break;
 		case PRIMENUMBER : cont.primeNumber();break;
 		case CALCULATION : cont.calculation(); break;
+		case REAlNUMBER : cont. realnumber(); break;
 		}
 	}
 }
