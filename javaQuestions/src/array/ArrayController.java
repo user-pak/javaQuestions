@@ -260,18 +260,64 @@ public class ArrayController {
 
 	public void pointTotalization() {
 		// TODO Auto-generated method stub
-		int person, subject;
+		int person; // subject : Kor = 0, Math = 1
 		do {
 			System.out.print("person: " );
 			person = sc.nextInt();
-			System.out.print("subject: ");
-			subject = sc.nextInt();
-		}while(person < 0 || subject < 0);
-		int[][] points = new int[person][subject];
+			}while(person < 0 );
+		int[][] points = new int[person][2];
 		int[] sumP = new int[person];
-		int[] sumS = new int[subject];
+		int[] sumS = new int[2];
 		
-		
+		for(int i = 0; i < person; i++) {
+			for(int j = 0; j < 2; j++) {
+				points[i][j] = random.nextInt(100) + 1;
+			}
+		}
+		for(int i = 0; i < person; i++) {
+			sumP[i] += points[i][0] + points[i][1];
+			sumS[0] += points[i][0];
+			sumS[1] += points[i][1];
+		}
+		for(int i = 0; i < person; i++) {
+			System.out.println((i+1)+": [Kor]: " + points[i][0] + " [Math]: " + points[i][1] + " sum: " + sumP[i] + " avg: " + (double)sumP[i]/2 );
+		}
+		System.out.println("KorAvg: " + (double)sumS[0]/person + " MathAvg: " + (double)sumS[1]/person);
+	}
+
+	public void unEvennessArray() {
+		// TODO Auto-generated method stub
+		int[][] arr = new int[getLength()][];
+		for(int i = 0; i < arr.length; i++) {
+			arr[i] = new int[getLength()];
+			for(int j = 0; j < arr[i].length; j++) {
+				arr[i][j] = getLength();
+				System.out.println("arr[" + i + "][" + j + "] = " + arr[i][j]);
+			}
+		}
+	}
+
+	public void pointClass() {
+		// TODO Auto-generated method stub
+		System.out.print("class count: ");
+		int totalScore = 0, totalNumber = 0;
+		int[][] total = new int[sc.nextInt()][];
+		for(int i = 0; i < total.length; i++) {
+			System.out.print((i+1)+ "th class students count: ");
+			int studentsCount = sc.nextInt();
+			total[i] = new int[studentsCount];
+			totalNumber += studentsCount;
+			int sumStudents = 0;
+			for(int j = 0; j < total[i].length; j++) {
+				System.out.print("each student score: ");
+				total[i][j] = sc.nextInt();
+				sumStudents += total[i][j];
+//				count++;
+			}
+			System.out.println((i+1)+ "th class avg: " + (double)sumStudents/total[i].length);
+			totalScore += sumStudents;
+		}
+		System.out.println("sumTotal: " + totalScore + " avgStudents: " + (double)totalScore/totalNumber);
 	}
 }
 

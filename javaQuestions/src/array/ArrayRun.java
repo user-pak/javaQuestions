@@ -6,7 +6,7 @@ public class ArrayRun {
 
 	enum Menu {
 		PRINTINT, PRINTDOUBLE, BARGRAPH, POINTSUMAVG, LINEARSEARCHTOP, ARRAYRANDX, SHUFFLE, COPYARRAYREVERSE, MONTHCAI, DAYCAI,
-		MATRIXPRODUCT, POINTTOTALIZATION,
+		MATRIXPRODUCT, POINTTOTALIZATION, UNEVENNESSARRAY, POINTCLASS,
 		TERMINATE,
 	}
 	
@@ -45,6 +45,8 @@ public class ArrayRun {
 		case DAYCAI: ac.dayCAI(); break;
 		case MATRIXPRODUCT: ac.matrixProduct(); break;
 		case POINTTOTALIZATION: ac.pointTotalization(); break;
+		case UNEVENNESSARRAY: ac.unEvennessArray(); break;
+		case POINTCLASS: ac.pointClass(); break;
 		case TERMINATE : return;
 		}
 	}
