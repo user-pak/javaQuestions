@@ -1,14 +1,17 @@
 package method;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class MethodRun {
 
 	protected static Scanner sc = new Scanner(System.in);
+//	private static Random random = new Random();
 	
 	enum Menu {
 		
-		SIGNOF, MIN, MED, SUMUP, PRINTSEASON, ISOSCELESTRIANGLE, RANDOMTESTER,
+		SIGNOF, MIN, MED, SUMUP, PRINTSEASON, ISOSCELESTRIANGLE, RANDOMTESTER, INVERSENUMBER, MENTALARITHMETIC, SUMOF, MINOF,
+		LINEARSEARCH, ARRAYREMOVE, ARRAYEXG, ARRAYCLONE, ARRAYSEARCHINDEX, 
 		TERMINATE,
 	}
 	
@@ -16,6 +19,7 @@ public class MethodRun {
 		
 		for(Menu menu : Menu.values()) {
 			System.out.print("["+ menu.ordinal() + "]" + menu + " ");
+			if(menu.ordinal() %10 == 0) System.out.println();
 		}
 		int choice = sc.nextInt();
 		for(Menu menu: Menu.values()) {
@@ -27,7 +31,7 @@ public class MethodRun {
 	public static void main(String[] args) {
 	
 		MethodController mc = new MethodController();
-		Menu menu; int result;
+		Menu menu; int result; 
 		do {
 			switch(menu = selectMenu()) {
 			case SIGNOF: 
@@ -37,31 +41,25 @@ public class MethodRun {
 			case MED:
 				result = mc.med(getNumber(),getNumber(),getNumber()); print(result, menu); break;
 			case SUMUP:
-				result = mc.sumUp(getNumber(menu)); print(result, menu); break;
-			case PRINTSEASON:// mc.printSeason(getNumber(menu)); break;
-								mc.printSeason(getNumber()); break;
+				result = mc.sumUp(getNumber()); print(result, menu); break;
+			case PRINTSEASON: mc.printSeason(getNumber(menu)); break;
+							//mc.printSeason(getNumber()); break;
 			case ISOSCELESTRIANGLE: mc.isoscelesTriangle(getNumber()); break;
-			case RANDOMTESTER: mc.randomTester(); break;
+			case RANDOMTESTER: 
+				result = mc.randomTester(getNumber(), getNumber()); print(result, menu);  break;
+			case INVERSENUMBER: mc.inverseNumber(getNumber(), menu); break;
+			case MENTALARITHMETIC: mc.mentalArithmetic(); break;
+			case SUMOF: mc.sumOf(getNumber()); break;
+			case MINOF: mc.minOf(getNumber()); break;
+			case LINEARSEARCH: mc.linearSearch(getNumber()); break;
+			case ARRAYREMOVE: mc.arrayRemove(getNumber()); break;
+			case ARRAYEXG: mc.arrayExchange(getNumber(), getNumber()); break;
+			case ARRAYCLONE: mc.arrayClone(getNumber()); break;
+			case ARRAYSEARCHINDEX: mc.arraySearchIndex(getNumber()); break;
 			case TERMINATE: return;
 			
 			}
 		}while(menu == null);
-	}
-
-	private static int getNumber(Menu menu) {
-		// TODO Auto-generated method stub
-		int number = -1;
-		switch(menu) {
-		case SUMUP: case ISOSCELESTRIANGLE:
-			do {
-				number = getNumber();
-			}while(number <= 0);
-		case PRINTSEASON:
-			do {
-				number = getNumber();
-			}while(number < 1 || number > 12);
-		}
-		return number;
 	}
 
 	private static void print(int result, Menu menu) {
@@ -71,9 +69,26 @@ public class MethodRun {
 
 	private static int getNumber() {
 		// TODO Auto-generated method stub
-		System.out.print("enter any number of Integer values: ");
-		int number=  sc.nextInt();
+		int number;
+		do {
+			System.out.print("enter any number of Integer values: ");
+			number = sc.nextInt();
+		}while(number <= 0);
 		sc.nextLine();
 		return number;
 	}
+	
+	private static int getNumber(Menu menu) {
+		// TODO Auto-generated method stub
+		int number = -1;
+//		if(menu.equals("PRINTSEASON")) {
+			do {
+				System.out.print("enter any number of Integer values: ");
+				number = sc.nextInt();
+			}while(number < 1 || number > 12);
+		sc.nextLine();
+//		}
+		return number;
+	}
+	
 }
