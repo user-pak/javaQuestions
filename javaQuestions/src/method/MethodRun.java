@@ -1,6 +1,5 @@
 package method;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class MethodRun {
@@ -11,7 +10,8 @@ public class MethodRun {
 	enum Menu {
 		
 		SIGNOF, MIN, MED, SUMUP, PRINTSEASON, ISOSCELESTRIANGLE, RANDOMTESTER, INVERSENUMBER, MENTALARITHMETIC, SUMOF, MINOF,
-		LINEARSEARCH, ARRAYREMOVE, ARRAYEXG, ARRAYCLONE, ARRAYSEARCHINDEX, 
+		LINEARSEARCH, ARRAYREMOVE, ARRAYEXG, ARRAYCLONE, ARRAYSEARCHINDEX, ARRAYREMOVEOF, ARRAYINSOF, ADDMATRIX, ARRAYCLONETD,
+		MINARRAY, ABSOLUTE, PRINTARRAY,
 		TERMINATE,
 	}
 	
@@ -56,6 +56,13 @@ public class MethodRun {
 			case ARRAYEXG: mc.arrayExchange(getNumber(), getNumber()); break;
 			case ARRAYCLONE: mc.arrayClone(getNumber()); break;
 			case ARRAYSEARCHINDEX: mc.arraySearchIndex(getNumber()); break;
+			case ARRAYREMOVEOF: mc.arrayRemoveOf(getNumber()); break;
+			case ARRAYINSOF: mc.arrayInsOf(getNumber()); break;
+			case ADDMATRIX: mc.addMatrix(getNumber(), getNumber()); break;
+			case ARRAYCLONETD: mc.arrayCloneTD(getNumber(), getNumber()); break;
+			case MINARRAY: mc.minArray(getNumber(), getNumber(), getNumber()); break;
+			case ABSOLUTE: mc.absolute(); break;
+			case PRINTARRAY: mc.printArray(); break;
 			case TERMINATE: return;
 			
 			}

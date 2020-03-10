@@ -307,4 +307,221 @@ public class MethodController {
 		else return null;
 	}
 
+	public void arrayRemoveOf(int length) {
+		// TODO Auto-generated method stub
+		int[] arr = getArr(length);
+		System.out.print("index: ");
+		int idx = sc.nextInt();	sc.nextLine();
+		int[] arrB = removeClone(arr, idx);
+		printArr(arrB);
+		System.out.print("count: ");
+		int count = sc.nextInt(); sc.nextLine();
+		int[] arrC = removeClone(arr, idx, count);
+		printArr(arrC);
+		System.out.println("arr: " + arr);
+		System.out.println("arrB: " + arrB);
+		System.out.println("arrC: " + arrC);
+	}
+
+	private int[] removeClone(int[] arr, int idx, int count) {
+		// TODO Auto-generated method stub
+		if(idx <0 || idx > arr.length || count <0) return arr.clone();
+		else {
+			if(idx + count > arr.length) count = arr.length - idx; 
+			int[] arrC = new int[arr.length - count];
+			for(int i = 0; i < idx; i++) arrC[i] = arr[i];
+			for(int i = idx; i < arrC.length; i++) arrC[i] = arr[i + count];
+			return arrC;
+		}
+	}
+
+	private int[] removeClone(int[] arr, int idx) {
+		
+		if(idx <0 || idx > arr.length) return arr.clone();
+		else {
+			int[] arrB = new int[arr.length -1];
+			for(int i = 0; i < idx; i++) arrB[i] = arr[i];
+			for(int i = idx; i < arrB.length; i++) arrB[i] = arr[i+1];
+			return arrB;
+		}
+	}
+
+	public void arrayInsOf(int length) {
+		// TODO Auto-generated method stub
+		int[] arr = getArr(length);
+		System.out.print("index: ");
+		int idx = sc.nextInt();
+		System.out.print("value: ");
+		int val = sc.nextInt(); sc.nextLine();
+		int[] arrI = insertClone(arr, idx, val);
+		printArr(arrI);
+	}
+
+	private int[] insertClone(int[] arr, int idx, int val) {
+		// TODO Auto-generated method stub
+		if(idx <0 || idx > arr.length) return arr.clone();
+		else {
+			int[] arrI = new int[arr.length+1];
+			for(int i = 0; i < idx; i++) arrI[i] = arr[i];
+			for(int i = idx; i < arr.length; i++) arrI[i+1] = arr[i];
+			arrI[idx] = val;
+			return arrI;
+		}
+	}
+
+	public void addMatrix(int column, int row) {
+		// TODO Auto-generated method stub
+//		int[][] arrA = {{1,2,3,},{4,5,6,}};
+//		int[][] arrB = {{10,20,30,},{40,50,60,}};
+//		int[][] arrT = new int[2][3];
+		int[][] arrA = new int[column][row];
+		int[][] arrB = new int[column][row];
+		for(int i = 0; i < arrA.length; i++) {
+			for(int j = 0; j <arrA[i].length; j++) {
+				arrA[i][j] = random.nextInt(10);
+				System.out.printf("arrA[%d][%d] : %d ", i, j, arrA[i][j]);
+				arrB[i][j] = random.nextInt(10) + 10;
+				System.out.printf("arrB[%d][%d] : %d ", i, j, arrB[i][j]);
+			}
+			System.out.println();
+		}
+		int[][] arrT = new int[arrA.length][];
+		for(int i = 0; i < arrT.length; i++) {
+			arrT[i] = new int[arrA[i].length];
+			for(int j = 0; j < arrT[i].length; j++) {
+				arrT[i][j] = arrA[i][j] + arrB[i][j];
+			}
+		}
+		
+		if(checkMatrix(arrA, arrB, arrT)) {
+			for(int i = 0; i < arrA.length; i++) {
+				for(int j = 0; j < arrA[i].length; j++) System.out.print(arrT[i][j] + " ");
+				System.out.println();
+			}
+		}
+	}
+	
+	private boolean checkMatrix(int[][] arrA, int[][] arrB, int[][] arrT) {
+		if(arrA.length != arrB.length || arrB.length != arrT.length) return false;
+		for(int i = 0; i < arrT.length; i++) {
+			if(arrA[i].length != arrB[i].length || arrB[i].length != arrT[i].length) return false;
+			for(int j = 0; j < arrT[i].length; j++) {
+//				arrT[i][j] = arrA[i][j] + arrB[i][j];
+			}
+		}
+		return true;
+	}
+
+	public void arrayCloneTD(int column, int row) {
+		// TODO Auto-generated method stub
+		int[][] arr = new int[column][row];
+		for(int i = 0; i < arr.length; i++) {
+			for(int j = 0; j < arr[i].length; j++) {
+				arr[i][j] = random.nextInt(10);
+			}
+		}
+		printArr(arr);
+		printArr(copyMatrix(arr));
+	}
+	
+	private int[][] copyMatrix(int[][] arr) {
+		int[][] copy = new int[arr.length][];
+		for(int i = 0; i < copy.length; i++) {
+			copy[i] = new int[arr[i].length];
+			for(int j = 0; j < copy[i].length; j++) {
+				copy[i][j] = arr[i][j];
+			}
+		}
+		return copy;
+	}
+	
+	private void printArr(int[][] arr) {
+		for(int i = 0; i < arr.length; i++) {
+			for(int j = 0; j < arr[i].length; j++)
+				System.out.printf("arr[%d][%d]: %d ", i, j, arr[i][j]);
+			System.out.println();
+		}
+	}
+
+	public void minArray(int a, int b, int c) {
+		// TODO Auto-generated method stub
+		int between = intMin(a, b);
+		int among = intMin(a, b, c);
+		int many = intMin(getArr(a));
+		System.out.println("min between: " + between + " among: " + among + " many: " + many);
+	}
+
+	private int intMin(int[] arr) {
+		// TODO Auto-generated method stub
+		int min = arr[0];
+		for(int i = 1; i < arr.length; i++) {
+			if(arr[i] < min) min = arr[i];
+		}
+		return min;
+	}
+
+	private int intMin(int a, int b, int c) {
+		// TODO Auto-generated method stub
+		int min = a;
+		if(b < min) min = b;
+		if(c < min) min = c;
+		return min;
+	}
+
+	private int intMin(int a, int b) {
+		// TODO Auto-generated method stub
+		return a < b? a : b ;
+	}
+
+	public void absolute() {
+		// TODO Auto-generated method stub
+		int in = random.nextInt();
+		long lo = random.nextLong();
+		float fl = random.nextFloat();
+		double dou = random.nextDouble();
+		
+		int abIn = getAbs(in);
+		long abLo = getAbs(lo);
+		float abFl = getAbs(fl);
+		double abDo = getAbs(dou);
+		
+		System.out.println("in: " + in + " abIn: " + abIn + " lo: " + lo + " abLo: " + abLo + " fl: " + fl + " abFl: " + abFl + " dou: " + dou + " abDo: " + abDo);
+	}
+
+	private double getAbs(double number) {
+		// TODO Auto-generated method stub
+		return number >= 0? number: -number;
+	}
+
+	private float getAbs(float number) {
+		// TODO Auto-generated method stub
+		return number >= 0? number: -number;
+	}
+
+	private long getAbs(long number) {
+		// TODO Auto-generated method stub
+		return number >= 0? number: -number;
+	}
+
+	private int getAbs(int number) {
+		// TODO Auto-generated method stub
+		return number >= 0? number: -number;
+	}
+
+	public void printArray() {
+		// TODO Auto-generated method stub
+		System.out.print("length: ");
+		int[] arr = getArr(sc.nextInt());
+		System.out.print("column: ");
+		int[][] matrix = new int[sc.nextInt()][];
+		for(int i = 0; i < matrix.length; i++) {
+			System.out.print("[" + i + "]row: ");
+			matrix[i] = new int[sc.nextInt()];
+			for(int j = 0; j < matrix[i].length; j++) {
+				matrix[i][j] = random.nextInt(10);
+			}
+		}
+		printArr(arr);
+		printArr(matrix);
+	}
 }
