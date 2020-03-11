@@ -13,6 +13,7 @@ public class Human {
 		this.name = name;
 		this.height = height;
 		this.weight = weight;
+		System.out.println(this.toString());
 	}
 
 	public String getName() {
@@ -44,10 +45,12 @@ public class Human {
 	}
 	
 	public void gainWeight(int weight) {
+		System.out.println(this.name + " gains " + weight + "kg");
 		this.weight += weight;
 	}
 	
 	public void loseWeight(int weight) {
+		System.out.println(this.name + " loses " + weight + "kg");
 		this.weight -= weight;
 	}
 }
