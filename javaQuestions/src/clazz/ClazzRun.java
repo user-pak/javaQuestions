@@ -10,7 +10,7 @@ public class ClazzRun {
 	
 	enum Menu {
 		
-		HUMANTESTER, GETPASSWORD, CARTESTER,
+		HUMANTESTER, GETPASSWORD, CARTESTER, COORDINATETESTER, HUMANARRAYTESTER,
 //		public static final String HUMANTESTER = new Menu();
 		;
 		
@@ -37,6 +37,8 @@ public class ClazzRun {
 		case HUMANTESTER : cc.humanTester(); break;
 		case GETPASSWORD: cc.getPassword(); break;
 		case CARTESTER: cc.carTester(); break;
+		case COORDINATETESTER: cc.CoordinateTester(); break;
+		case HUMANARRAYTESTER: cc.HumanArrayTester(); break;
 		}
 	}
 }

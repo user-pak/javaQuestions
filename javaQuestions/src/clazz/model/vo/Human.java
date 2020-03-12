@@ -6,14 +6,16 @@ public class Human {
 	private int height;
 	private int weight;
 	
-	public Human() {}
+	public Human() {
+		this.name = "cloned";
+	}
 	
 	public Human(String name, int height, int weight) {
 		super();
 		this.name = name;
 		this.height = height;
 		this.weight = weight;
-		System.out.println(this.toString());
+//		System.out.println(this.toString());
 	}
 
 	public String getName() {
