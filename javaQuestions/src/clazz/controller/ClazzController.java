@@ -5,9 +5,13 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 import java.util.Scanner;
 
+import clazz.model.vo.Account;
 import clazz.model.vo.Car;
 import clazz.model.vo.Coordinate;
+import clazz.model.vo.Day;
 import clazz.model.vo.Human;
+import clazz.model.vo.Id;
+import clazz.model.vo.Period;
 
 public class ClazzController {
 
@@ -16,14 +20,17 @@ public class ClazzController {
 	
 	public void humanTester() {
 		
-		Human changSu = new Human("ChangSu", 172, 68);
-		Human jiEun = new Human("JiEun", 165, 50);
+		Human changSu = new Human("ChangSu", 172, 68, getDay());
+		Human jiEun = new Human("JiEun", 165, 50, getDay());
 		
 		changSu.gainWeight(3);
 		jiEun.loseWeight(2);
 		
 		System.out.println(changSu.toString());
+		System.out.println("id: " + changSu.getId());
 		System.out.println(jiEun.toString());
+		System.out.println("id: " + jiEun.getId());
+		
 		
 	}
 	
@@ -188,5 +195,63 @@ public class ClazzController {
 		for(int i = 0; i <humanMax.length; i++) {
 			printHumans(humanMax[i]);
 		}
+	}
+	
+	public void dayTester() {
+		
+		System.out.print(getDay());
+	}
+	
+	private Day getDay() {
+		
+		System.out.print("year: ");
+		int year = sc.nextInt();
+		System.out.print("month: ");
+		int month = sc.nextInt();
+		System.out.print("date: ");
+		int date = sc.nextInt();
+		sc.nextLine();
+		return new Day(year, month, date);
+	}
+	
+	public void accountTester() {
+		
+		System.out.print("name: ");
+		String name = sc.nextLine();
+		int accountNo = random.nextInt(10000) +1;
+		System.out.print("balance: ");
+		long balance = sc.nextLong();
+		Day day = getDay();
+		Account account = new Account(name, accountNo, balance, day);
+		System.out.println(account.toString());
+	}
+	
+	public void periodTester() {
+		
+		Period KH = new Period(new Day(2019, 5, 16), new Day(2019, 12, 6));
+		System.out.println("KH: " + KH.toString());
+	}
+	
+	public void idTester() {
+		
+		System.out.println(Id.pseudo);
+		Id a = new Id();
+		Id b = new Id();
+		Id.modifyStep(3);
+		System.out.println("step: " + Id.getStep());
+		System.out.println("a : " + a.getId());
+		System.out.println("b: " + b.getId());
+		Id c = new Id();
+		System.out.println("c: " + c.getId());
+		System.out.println("counter : " + Id.getMaxId());
+	}
+	
+	public void mathMethod() {
+		
+		System.out.print("real number: ");
+		double real = sc.nextDouble();
+		System.out.println("abs: " + Math.abs(real));
+		System.out.println("sqrt: " + Math.sqrt(Math.abs(real)));
+		System.out.println("the area of ​​the circle: " + (Math.PI * Math.abs(real) * Math.abs(real)));
 	}
 }

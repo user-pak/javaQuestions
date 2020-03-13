@@ -10,7 +10,8 @@ public class ClazzRun {
 	
 	enum Menu {
 		
-		HUMANTESTER, GETPASSWORD, CARTESTER, COORDINATETESTER, HUMANARRAYTESTER,
+		HUMANTESTER, GETPASSWORD, CARTESTER, COORDINATETESTER, HUMANARRAYTESTER, DAYTESTER, ACCOUNTTESTER, PERIODTESTER, IDTESTER,
+		MATHMETHOD,
 //		public static final String HUMANTESTER = new Menu();
 		;
 		
@@ -39,6 +40,11 @@ public class ClazzRun {
 		case CARTESTER: cc.carTester(); break;
 		case COORDINATETESTER: cc.CoordinateTester(); break;
 		case HUMANARRAYTESTER: cc.HumanArrayTester(); break;
+		case DAYTESTER: cc.dayTester(); break;
+		case ACCOUNTTESTER: cc.accountTester(); break;
+		case PERIODTESTER: cc.periodTester(); break;
+		case IDTESTER: cc.idTester(); break;
+		case MATHMETHOD: cc.mathMethod(); break;
 		}
 	}
 }
