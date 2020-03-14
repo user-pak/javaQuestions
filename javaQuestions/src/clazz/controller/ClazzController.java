@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 import java.util.Scanner;
 
+import clazz.model.service.Days;
 import clazz.model.vo.Account;
 import clazz.model.vo.Car;
 import clazz.model.vo.Coordinate;
@@ -253,5 +254,29 @@ public class ClazzController {
 		System.out.println("abs: " + Math.abs(real));
 		System.out.println("sqrt: " + Math.sqrt(Math.abs(real)));
 		System.out.println("the area of ​​the circle: " + (Math.PI * Math.abs(real) * Math.abs(real)));
+	}
+
+	public void daysTester() {
+		// TODO Auto-generated method stub
+		System.out.print("enter year: ");
+		int year = sc.nextInt();
+		System.out.print("enter month: ");
+		int month = sc.nextInt();
+		System.out.print("enter date: ");
+		int date = sc.nextInt();
+		
+		Day day = new Day(year, month, date);
+		Days service = new Days();
+		while(true) {
+			System.out.print(
+					"[1] Information about [2] change the date [3] compare two dates [4]date before and date after [5] end : ");
+			int menu = sc.nextInt();
+			switch(menu) {
+			case 1 : service.display(day); break;
+			case 2 : service.change(day); break;
+			case 3 : service.compare(day); break;
+			case 4 : service.beforeAfter(day); break;
+			}
+		}
 	}
 }

@@ -3,6 +3,7 @@ package clazz;
 import java.util.Scanner;
 
 import clazz.controller.ClazzController;
+import clazz.model.service.Days;
 
 public class ClazzRun {
 
@@ -11,7 +12,7 @@ public class ClazzRun {
 	enum Menu {
 		
 		HUMANTESTER, GETPASSWORD, CARTESTER, COORDINATETESTER, HUMANARRAYTESTER, DAYTESTER, ACCOUNTTESTER, PERIODTESTER, IDTESTER,
-		MATHMETHOD,
+		MATHMETHOD, DAYSERVICE,
 //		public static final String HUMANTESTER = new Menu();
 		;
 		
@@ -45,6 +46,7 @@ public class ClazzRun {
 		case PERIODTESTER: cc.periodTester(); break;
 		case IDTESTER: cc.idTester(); break;
 		case MATHMETHOD: cc.mathMethod(); break;
+		case DAYSERVICE: cc.daysTester(); break;
 		}
 	}
 }
