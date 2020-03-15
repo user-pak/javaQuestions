@@ -12,7 +12,7 @@ public class ClazzRun {
 	enum Menu {
 		
 		HUMANTESTER, GETPASSWORD, CARTESTER, COORDINATETESTER, HUMANARRAYTESTER, DAYTESTER, ACCOUNTTESTER, PERIODTESTER, IDTESTER,
-		MATHMETHOD, DAYSERVICE,
+		MATHMETHOD, DAYSERVICE, POINT2DTESTER, LUCKDRAW,
 //		public static final String HUMANTESTER = new Menu();
 		;
 		
@@ -20,6 +20,7 @@ public class ClazzRun {
 			
 			for(Menu menu : Menu.values()) {
 				System.out.print("[" + menu.ordinal() + "]" + menu + " ");
+				if(menu.ordinal()%10 == 0) System.out.println();
 			}
 			int choice = sc.nextInt();
 			for(Menu menu : Menu.values()) {
@@ -47,6 +48,8 @@ public class ClazzRun {
 		case IDTESTER: cc.idTester(); break;
 		case MATHMETHOD: cc.mathMethod(); break;
 		case DAYSERVICE: cc.daysTester(); break;
+		case POINT2DTESTER: cc.point2DTester(); break;
+		case LUCKDRAW: cc.luckDraw(); break;
 		}
 	}
 }

@@ -19,9 +19,22 @@ public class Car {
 	private double fuel;
 	private double sfc;
 	
+	private Day purchaseday;
+	private String carname;
+	
 	public Car() {
 //		System.out.println("to select a car");
 	};
+	
+	public Car(String carname, int width, int height, int length, double fuel, Day purchaseday) {
+		this.carname = carname;
+		this.width = width;
+		this.height = height;
+		this.length = length;
+		this.fuel = fuel;
+		this.x = this.y = 0.0;
+		this.purchaseday = new Day(purchaseday);
+	}
 	
 	public Car(int name, int number, //int width, int height, int length, double tankage, 
 			double fuel//, double sfc
@@ -56,6 +69,7 @@ public class Car {
 //		this.sfc = sfc;
 		this.x = this.y = 0.0;
 //		System.out.println("A car is produced");
+		this.purchaseday = new Day(purchaseday);
 	}
 	
 	public CarBrand getName() {
@@ -72,6 +86,10 @@ public class Car {
 	
 	public double getFuel() {
 		return Math.ceil(this.fuel);
+	}
+	
+	public Day getPurchaseday() {
+		return new Day(purchaseday);
 	}
 	
 	@Override

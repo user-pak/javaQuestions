@@ -13,6 +13,7 @@ import clazz.model.vo.Day;
 import clazz.model.vo.Human;
 import clazz.model.vo.Id;
 import clazz.model.vo.Period;
+import clazz.model.vo.Point2D;
 
 public class ClazzController {
 
@@ -217,14 +218,29 @@ public class ClazzController {
 	
 	public void accountTester() {
 		
-		System.out.print("name: ");
-		String name = sc.nextLine();
-		int accountNo = random.nextInt(10000) +1;
-		System.out.print("balance: ");
-		long balance = sc.nextLong();
-		Day day = getDay();
-		Account account = new Account(name, accountNo, balance, day);
-		System.out.println(account.toString());
+		System.out.print("How many bank accounts can you open? : ");
+		int count = sc.nextInt();
+		Account[] account = new Account[count];
+		
+		for(int i = 0; i < count; i++) {
+			System.out.print("[0] simple  [1] detail : ");
+			int type = sc.nextInt();
+			sc.nextLine();
+			System.out.print("name: ");
+			String name = sc.nextLine();
+			int accountNo = random.nextInt(10000) +1;
+			if(type == 0) {
+				account[i] = new Account(name, accountNo);
+			}else {
+				System.out.print("balance: ");
+				long balance = sc.nextLong();
+				Day openday = getDay();
+				account[i] = new Account(name, accountNo, balance, openday);
+			}
+			System.out.println("Id: " + account[i].getId());
+			System.out.println(account[i].toString());
+			System.out.println("Openday : " + account[i].getDay().toString());
+		}
 	}
 	
 	public void periodTester() {
@@ -271,12 +287,37 @@ public class ClazzController {
 			System.out.print(
 					"[1] Information about [2] change the date [3] compare two dates [4]date before and date after [5] end : ");
 			int menu = sc.nextInt();
+			if(menu == 5) break;
 			switch(menu) {
 			case 1 : service.display(day); break;
 			case 2 : service.change(day); break;
 			case 3 : service.compare(day); break;
 			case 4 : service.beforeAfter(day); break;
 			}
+		}
+	}
+
+	public void point2DTester() {
+		// TODO Auto-generated method stub
+		for(int i = 0 ; i < 31; i++) {
+			Point2D point = new Point2D();
+			System.out.println(point.toString()+ " ");
+		}
+	}
+	
+	public void luckDraw() {
+		
+		Day today = new Day();
+		System.out.println("Today is " + today.toString());
+		
+		int luck = random.nextInt(10);
+		System.out.print("Today will be ");
+		switch(luck) {
+		case 0 : System.out.print("great!"); break;
+		case 1 : case 2 : case 3 : System.out.print("good"); break;
+		case 4 : case 5 : case 6 : System.out.println("no exception"); break;
+		case 7 : case 8 : System.out.print("a tough day"); break;
+		case 9 : System.out.print("awful!"); break;
 		}
 	}
 }
