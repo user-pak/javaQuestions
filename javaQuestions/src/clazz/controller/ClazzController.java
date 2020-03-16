@@ -5,15 +5,24 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 import java.util.Scanner;
 
+import clazz.model.service.AccountCompare;
 import clazz.model.service.Days;
+import clazz.model.service.DrawShapes;
 import clazz.model.vo.Account;
 import clazz.model.vo.Car;
 import clazz.model.vo.Coordinate;
 import clazz.model.vo.Day;
+import clazz.model.vo.ExCar;
 import clazz.model.vo.Human;
 import clazz.model.vo.Id;
 import clazz.model.vo.Period;
 import clazz.model.vo.Point2D;
+import clazz.model.vo.TimeAccount;
+import clazz.model.vo.animal.Animal;
+import clazz.model.vo.animal.Cat;
+import clazz.model.vo.animal.Dog;
+import clazz.model.vo.shape.Point;
+import clazz.model.vo.shape.Shape;
 
 public class ClazzController {
 
@@ -319,5 +328,62 @@ public class ClazzController {
 		case 7 : case 8 : System.out.print("a tough day"); break;
 		case 9 : System.out.print("awful!"); break;
 		}
+	}
+	
+	public void exCarTester() {
+		
+		Car car = new ExCar("F1", 320, 220, 400, 80.0, new Day());
+		System.out.println(car.toString());
+		car.move(3.3, 4.4);
+		System.out.println("current location: (" + car.getX() + "," + car.getY() + ")");
+		System.out.println("total Mileage : " + ((ExCar)car).getTotalMileage());
+	}
+	
+	public void TimeAccountTester() {
+		
+		AccountCompare service = new AccountCompare();
+		Account a = new Account("chanSu", 500);
+		TimeAccount b= new TimeAccount("jiEun",00001, 300, 400); 
+		switch(service.compareBalance(a, b)) {
+		case 0 : System.out.println("both are the same");
+		case 1 : System.out.println("a is more than b");
+		case -1 : System.out.println("b is more than a");
+		}
+	}
+	
+	public void animalTester() {
+		
+		Animal[] animal = new Animal[2];
+		animal[0] = new Dog("Happy", "beagle");
+		animal[1] = new Cat("Day", 5);
+		
+		for(Animal pet : animal) {
+			System.out.print(pet.getName());
+			pet.bark();
+			pet.introduce();
+		}
+	}
+	
+	public void shapeTester() {
+		
+		System.out.print("How many shapes would you like to draw? : ");
+		int count = sc.nextInt();
+		Shape[] shapes = new Shape[count];
+		DrawShapes service = new DrawShapes();
+		
+		for(int i = 0; i < shapes.length; i++) {
+			int type;
+			do {
+				System.out.print((i+1) + "th shape: [1] point [2] horizon [3] vertical [4] rectangle : ");
+				type = sc.nextInt();
+			}while(type < 1 || type > 4);
+			switch(type) {
+			case 1 : shapes[i] = service.drawPoint(); break;
+			case 2 : case 3 : shapes[i] = service.drawLine(type); break;
+			case 4 : shapes[i] = service.drawRectangle(); break;
+			}
+		}
+		
+		for(Shape shape : shapes) shape.print();
 	}
 }

@@ -4,8 +4,8 @@ public class ExCar extends Car{
 
 	private double totalMileage;
 	
-	public ExCar(int name, int number, double fuel, Day purchaseday) {
-		super(name, number, fuel);
+	public ExCar(String name, int width, int height, int length, double fuel, Day purchaseday) {
+		super(name, width, height, length , fuel, purchaseday);
 		totalMileage = 0.0;
 	}
 	public double getTotalMileage() {
@@ -24,4 +24,5 @@ public class ExCar extends Car{
 		}
 		return false;
 	}
+	
 }

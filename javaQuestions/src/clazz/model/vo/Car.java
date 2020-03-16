@@ -33,6 +33,8 @@ public class Car {
 		this.length = length;
 		this.fuel = fuel;
 		this.x = this.y = 0.0;
+		this.sfc = 1;
+		this.tankage = 100.0;
 		this.purchaseday = new Day(purchaseday);
 	}
 	
@@ -69,7 +71,7 @@ public class Car {
 //		this.sfc = sfc;
 		this.x = this.y = 0.0;
 //		System.out.println("A car is produced");
-		this.purchaseday = new Day(purchaseday);
+//		this.purchaseday = new Day();
 	}
 	
 	public CarBrand getName() {
@@ -94,8 +96,8 @@ public class Car {
 	
 	@Override
 	public String toString() {
-		return "Car [name=" + name + ", number=" + number + ", width=" + width + ", height=" + height + ", length="
-				+ length + ", tankage=" + tankage + ", fuel=" + fuel + ", sfc=" + sfc + "]";
+		return "Car [name=" + (name != null? name : carname) + ", number=" + (number != 0? number : "exCar") + ", width=" + width + ", height=" + height + ", length="
+				+ length + ", tankage=" + tankage + ", fuel=" + fuel + ", sfc=" + sfc + (purchaseday != null? ", purchaseDay=" + purchaseday + "]": "]");
 	}
 	
 	public void selectCar() {
@@ -129,4 +131,9 @@ public class Car {
 			if(this.fuel > this.tankage) this.fuel = this.tankage;
 		}
 	}
+	
+	public void printLocation() {
+		System.out.println("current location : (" + x + "," + y + ")");
+	}
+
 }
