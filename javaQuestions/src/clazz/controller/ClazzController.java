@@ -21,8 +21,15 @@ import clazz.model.vo.TimeAccount;
 import clazz.model.vo.animal.Animal;
 import clazz.model.vo.animal.Cat;
 import clazz.model.vo.animal.Dog;
-import clazz.model.vo.shape.Point;
+import clazz.model.vo.rockPaperScissors.ComputerPlayer;
+import clazz.model.vo.rockPaperScissors.HumanPlayer;
+import clazz.model.vo.rockPaperScissors.Player;
+import clazz.model.vo.shape.AbstTriangle;
 import clazz.model.vo.shape.Shape;
+import clazz.model.vo.shape.TriangleLB;
+import clazz.model.vo.shape.TriangleLU;
+import clazz.model.vo.shape.TriangleRB;
+import clazz.model.vo.shape.TriangleRU;
 
 public class ClazzController {
 
@@ -41,7 +48,6 @@ public class ClazzController {
 		System.out.println("id: " + changSu.getId());
 		System.out.println(jiEun.toString());
 		System.out.println("id: " + jiEun.getId());
-		
 		
 	}
 	
@@ -385,5 +391,43 @@ public class ClazzController {
 		}
 		
 		for(Shape shape : shapes) shape.print();
+	}
+	
+	public void TriangleTester() {
+		System.out.print("How many triangles would you like to draw? : ");
+		int count = sc.nextInt();
+		AbstTriangle[] triangles = new AbstTriangle[count];
+		
+		for(int i = 0; i < triangles.length; i++) {
+			System.out.print((i+1) + "th triangle: [1]LB [2]LU [3]RB [4]RU : ");
+			int choice;
+			do {
+				choice = sc.nextInt();
+			}while(choice < 1 || choice > 4);
+			
+			System.out.print("length: ");
+			int length = sc.nextInt();
+			triangles[i] = choice == 1? new TriangleLB(length) : choice == 2? new TriangleLU(length) : choice == 3? new TriangleRB(length) : new TriangleRU(length);
+			
+			triangles[i].print();
+		}
+	}
+	
+	public void RockPaperScissors() {
+		Player human = new HumanPlayer();
+		Player computer = new ComputerPlayer();
+		String[] hands = { "Rock", "Paper", "Scissors" };
+		do {
+			int humanHand = human.nextHand();
+			int comHand = computer.nextHand();
+			System.out.println("Human: " + hands[humanHand] + " VS " + hands[comHand] + " :Computer");
+			int judge = (humanHand - comHand +3)%3;
+			switch(judge) {
+			case 0 : System.out.println("Draw"); break;
+			case 1 : System.out.println("Lose"); break;
+			case 2 : System.out.println("Win"); break;
+			}
+			System.out.print("one more time? ");
+		}while(confirm());
 	}
 }
