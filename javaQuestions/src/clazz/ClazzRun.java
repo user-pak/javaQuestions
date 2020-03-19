@@ -13,7 +13,8 @@ public class ClazzRun {
 		
 		HUMANTESTER, GETPASSWORD, CARTESTER, COORDINATETESTER, HUMANARRAYTESTER, DAYTESTER, ACCOUNTTESTER, PERIODTESTER, IDTESTER,
 		MATHMETHOD, DAYSERVICE, POINT2DTESTER, LUCKDRAW, EXCARTESTER, TIMEACCOUNTTESTER, ANIMALTESTER, SHAPETESTER, TRIANGLETESTER,
-		ROCKPAPERSCISSORS,
+		ROCKPAPERSCISSORS, WEARABLETESTER, SKINNABLESOFTEWARETESTER, GETAREATESTER, SKINNABLEROBOTTESTER, HEADMOUNTEDDISPLAYTESTER,
+		DVDPLAYERTESTER, PRINTARGS,
 //		public static final String HUMANTESTER = new Menu();
 		;
 		
@@ -57,6 +58,31 @@ public class ClazzRun {
 		case SHAPETESTER: cc.shapeTester(); break;
 		case TRIANGLETESTER: cc.TriangleTester(); break;
 		case ROCKPAPERSCISSORS: cc.RockPaperScissors(); break;
+		case WEARABLETESTER: cc.wearableTester(); break;
+		case SKINNABLESOFTEWARETESTER : cc.skinnableSoftwareTester(); break;
+		case GETAREATESTER: cc.getAreaTester(); break;
+		case SKINNABLEROBOTTESTER: cc.skinnabeRobotPetTester(); break;
+		case HEADMOUNTEDDISPLAYTESTER: cc.headMountedDisplayTester(); break;
+		case DVDPLAYERTESTER: cc.dvdPlayerTester(); break;
+		case PRINTARGS: printArgs(args); break;
 		}
+	}
+
+
+	private static void printArgs(String[] args) {
+		// TODO Auto-generated method stub
+		for(int i = 0; i < args.length; i++) {
+			System.out.print("args[" + i + "]: "  + args[i]+ " ");
+		}
+		System.out.println();
+		for(int i = 0; i < args.length; i++) {
+			double radius = Double.parseDouble(args[i]);
+			System.out.println("radius: " + radius + " area: " + radius * radius * Math.PI + " circumference: " + radius * 2 * Math.PI);
+		}
+		double sum = 0.0;
+		for(String arg : args) {
+			sum += Double.parseDouble(arg);
+		}
+		System.out.println("sum: " + sum);
 	}
 }

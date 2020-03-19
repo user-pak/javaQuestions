@@ -5,31 +5,47 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 import java.util.Scanner;
 
+import clazz.model.service.AboutRobotPet;
 import clazz.model.service.AccountCompare;
 import clazz.model.service.Days;
 import clazz.model.service.DrawShapes;
+import clazz.model.service.Plane2D;
+import clazz.model.service.Skinnable;
+import clazz.model.service.Wearable;
 import clazz.model.vo.Account;
 import clazz.model.vo.Car;
 import clazz.model.vo.Coordinate;
 import clazz.model.vo.Day;
 import clazz.model.vo.ExCar;
+import clazz.model.vo.HeadMountedDisplay;
 import clazz.model.vo.Human;
 import clazz.model.vo.Id;
 import clazz.model.vo.Period;
 import clazz.model.vo.Point2D;
+import clazz.model.vo.SkinnableSoftware;
 import clazz.model.vo.TimeAccount;
 import clazz.model.vo.animal.Animal;
 import clazz.model.vo.animal.Cat;
 import clazz.model.vo.animal.Dog;
+import clazz.model.vo.dvd.DVDPlayer;
+import clazz.model.vo.dvd.ExPlayer;
+import clazz.model.vo.dvd.Players;
+import clazz.model.vo.pet.Pet;
+import clazz.model.vo.pet.RobotPet;
+import clazz.model.vo.pet.SkinnableRobotPet;
 import clazz.model.vo.rockPaperScissors.ComputerPlayer;
 import clazz.model.vo.rockPaperScissors.HumanPlayer;
 import clazz.model.vo.rockPaperScissors.Player;
 import clazz.model.vo.shape.AbstTriangle;
+import clazz.model.vo.shape.Parallelogram;
+import clazz.model.vo.shape.Rectangle;
 import clazz.model.vo.shape.Shape;
 import clazz.model.vo.shape.TriangleLB;
 import clazz.model.vo.shape.TriangleLU;
 import clazz.model.vo.shape.TriangleRB;
 import clazz.model.vo.shape.TriangleRU;
+import clazz.model.vo.wearable.Headphones;
+import clazz.model.vo.wearable.WearableComputer;
 
 public class ClazzController {
 
@@ -380,13 +396,14 @@ public class ClazzController {
 		for(int i = 0; i < shapes.length; i++) {
 			int type;
 			do {
-				System.out.print((i+1) + "th shape: [1] point [2] horizon [3] vertical [4] rectangle : ");
+				System.out.print((i+1) + "th shape: [1] point [2] horizon [3] vertical [4] rectangle [5] parallelogram : ");
 				type = sc.nextInt();
-			}while(type < 1 || type > 4);
+			}while(type < 1 || type > 5);
 			switch(type) {
 			case 1 : shapes[i] = service.drawPoint(); break;
 			case 2 : case 3 : shapes[i] = service.drawLine(type); break;
-			case 4 : shapes[i] = service.drawRectangle(); break;
+			case 4 : shapes[i] = service.drawPlane(type); break;
+			case 5 : shapes[i] = service.drawPlane(type); break;
 			}
 		}
 		
@@ -429,5 +446,83 @@ public class ClazzController {
 			}
 			System.out.print("one more time? ");
 		}while(confirm());
+	}
+	
+	public void wearableTester() {
+		
+		Wearable[] wearables = new Wearable[2];
+		wearables[0] = new Headphones();
+		wearables[1] = new WearableComputer();
+		
+		for(int i = 0; i < wearables.length; i++) {
+			wearables[i].putOn();
+		}
+		for(int i = 0; i < wearables.length; i++) {
+			wearables[i].putOff();
+		}
+	}
+	
+	public void skinnableSoftwareTester() {
+		
+		SkinnableSoftware software = new SkinnableSoftware();
+		SkinnableSoftware greenSoftware = new SkinnableSoftware(Skinnable.GREEN);
+		
+		System.out.println(software.getSkinString());
+		software.changeSkin(Skinnable.RED);
+		System.out.println(software.getSkinString());
+		System.out.println(greenSoftware.getSkinString());
+	}
+	
+	public void getAreaTester() {
+		
+		Plane2D[] plane = {new Rectangle(2, 5), new Parallelogram(2, 5)};
+		for(int i = 0; i < plane.length; i++) {
+			System.out.println(plane[i].getArea());
+		}
+	}
+	
+	public void skinnabeRobotPetTester() {
+		
+		Pet[] pets = { new Pet("pet","one"),
+					   new RobotPet("robot","two"),
+					   new SkinnableRobotPet("skinnable","three"),
+					   new Pet("pet","four")
+				
+		};
+		for(Pet pet : pets) {
+			AboutRobotPet.petIntroduce(pet);
+			if(pet instanceof SkinnableRobotPet) {
+				System.out.print(" and my skin color is ");
+				((SkinnableRobotPet)pet).printSkin();
+				AboutRobotPet.working(pet);
+			}
+		}
+	}
+	
+	public void headMountedDisplayTester() {
+		
+		HeadMountedDisplay headphones = new HeadMountedDisplay();
+		headphones.putOn();
+		headphones.putOff();
+		headphones.printSkin();
+		headphones.changeSkin(Skinnable.RED);
+		headphones.printSkin();
+		
+		Wearable wear = headphones;
+		wear.putOn();
+		wear.putOff();
+		
+		Skinnable skin = headphones;
+		skin.changeSkin(Skinnable.GREEN);
+	
+		headphones.printSkin();
+	}
+	
+	public void dvdPlayerTester() {
+		
+		DVDPlayer dvd = new DVDPlayer();
+		Players players = new DVDPlayer();
+		ExPlayer ex = new DVDPlayer();
+		players.play(); ((ExPlayer)players).slow();
 	}
 }

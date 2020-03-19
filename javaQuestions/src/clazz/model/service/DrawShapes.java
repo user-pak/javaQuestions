@@ -3,6 +3,7 @@ package clazz.model.service;
 import java.util.Scanner;
 
 import clazz.model.vo.shape.HorzLine;
+import clazz.model.vo.shape.Parallelogram;
 import clazz.model.vo.shape.Point;
 import clazz.model.vo.shape.Rectangle;
 import clazz.model.vo.shape.Shape;
@@ -28,7 +29,7 @@ public class DrawShapes {
 		return type == 2? new HorzLine(length) : new VertLine(length);
 	}
 
-	public Shape drawRectangle() {
+	public Shape drawPlane(int type) {
 		// TODO Auto-generated method stub
 		int width, height;
 		do {
@@ -38,7 +39,7 @@ public class DrawShapes {
 			height = sc.nextInt();
 		}while(width <= 0 || height <= 0);
 		
-		return new Rectangle(width, height);
+		return type == 4? new Rectangle(width, height) : new Parallelogram(width, height);
 	}
 
 	
