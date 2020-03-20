@@ -13,6 +13,7 @@ import clazz.model.service.Plane2D;
 import clazz.model.service.Skinnable;
 import clazz.model.service.Wearable;
 import clazz.model.vo.Account;
+import clazz.model.vo.Calendar;
 import clazz.model.vo.Car;
 import clazz.model.vo.Coordinate;
 import clazz.model.vo.Day;
@@ -429,21 +430,29 @@ public class ClazzController {
 			triangles[i].print();
 		}
 	}
-	
 	public void RockPaperScissors() {
 		Player human = new HumanPlayer();
-		Player computer = new ComputerPlayer();
+		Player computerA = new ComputerPlayer();
+		Player computerB = new ComputerPlayer();
 		String[] hands = { "Rock", "Paper", "Scissors" };
 		do {
 			int humanHand = human.nextHand();
-			int comHand = computer.nextHand();
-			System.out.println("Human: " + hands[humanHand] + " VS " + hands[comHand] + " :Computer");
-			int judge = (humanHand - comHand +3)%3;
-			switch(judge) {
-			case 0 : System.out.println("Draw"); break;
-			case 1 : System.out.println("Lose"); break;
-			case 2 : System.out.println("Win"); break;
-			}
+			int comHandA = computerA.nextHand();
+			int comHandB = computerB.nextHand();
+			System.out.println("Human: " + hands[humanHand] + " VS " + hands[comHandA] + " VS " + hands[comHandB] + " :Computers");
+			int judgeA = (comHandA - humanHand +3)%3;
+			int judgeB = (comHandB - humanHand +3)%3;
+//			"[0]Draw [1]Lose [2]Win"
+			System.out.print("The result : ");
+			if(judgeA == 2 && judgeB == 2) System.out.println("Human win");
+			else if(judgeA == 1 && judgeB == 0) System.out.println("ComA win");
+			else if(judgeA == 0 && judgeB == 1) System.out.println("ComB win");
+			else if(judgeA == 0 && judgeB == 2) System.out.println("Human and ComA win");
+			else if(judgeA == 2 && judgeB == 0) System.out.println("Human and comB win");
+			else if(judgeA == 1 && judgeB == 1) System.out.println("Computers win");
+			else if(judgeA == 1 && judgeB == 2) System.out.println("Draw");
+			else if(judgeA == 2 && judgeB == 1) System.out.println("Draw");
+			else System.out.println("Draw");
 			System.out.print("one more time? ");
 		}while(confirm());
 	}
@@ -524,5 +533,40 @@ public class ClazzController {
 		Players players = new DVDPlayer();
 		ExPlayer ex = new DVDPlayer();
 		players.play(); ((ExPlayer)players).slow();
+	}
+	
+	public void printCalendar(String[] args) {
+		
+		int year = 1; int month = 1;
+		Calendar calendar = new Calendar();
+		if(args.length == 0) {
+			 Day day = new Day();
+			 year = day.getYear();
+			 month = day.getMonth();
+		}else {
+			if(args.length >= 1) {
+				year = Integer.parseInt(args[0]);
+				if(year < 0) {
+					System.out.println("year cant be negative"); return;
+				}
+			}
+			if(args.length >= 2) {
+				month = Integer.parseInt(args[1]);
+				if(month < 1 || month > 12) {
+					System.out.println("month is not between 1 and 12"); return;
+				}
+			}
+		}
+		if(args.length == 0 || args.length >= 2) {
+			System.out.println(year + "/" + month);
+			calendar.putCalendar(year, month);
+		}else {
+			System.out.println(year);
+			for(month = 1; month <=12; month++) {
+				System.out.println(month);
+				calendar.putCalendar(year, month);
+				System.out.println();
+			}
+		}
 	}
 }
