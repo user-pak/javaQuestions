@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Random;
 import java.util.Scanner;
 
 import clazz.model.vo.Day;
@@ -157,17 +158,20 @@ public class ExceptionController {
 		return number >= 0 && number <=9;
 	}
 	
-	private void reverse(int[] arr) {
+	private void reverse(int[] arr) throws RuntimeException{
 		try {
 			for(int i = 0 ; i < arr.length/2; i++) {
-				swap(arr, i , arr.length -1 -i);
+//				swap(arr, i, arr.length -1 -i);
+//				throw error
+				swap(arr, i, arr.length -i);
 			}
 		}catch(NullPointerException e) {
 			e.printStackTrace();
 			System.exit(1);
 		}catch(ArrayIndexOutOfBoundsException e) {
-			e.printStackTrace();
-			System.exit(1);
+//			e.printStackTrace();
+//			System.exit(1);
+			throw new RuntimeException("throw runtimeException", e);
 		}
 	}
 
@@ -180,8 +184,17 @@ public class ExceptionController {
 	
 	public void reverseArr() {
 		int[] arr = new int[getInt()];
+		for(int i = 0 ; i < arr.length; i++) {
+			arr[i] = new Random().nextInt(10);
+		}
 		for(int i : arr) System.out.print(i + " ");
-		reverse(arr);
+		try {
+			reverse(arr);
+		}catch (RuntimeException e){
+			System.err.println(e);
+			System.err.println(e.getCause());
+			System.exit(1);
+		}
 		System.out.println("reverse");
 		for(int i : arr) System.out.print(i + " ");
 	}

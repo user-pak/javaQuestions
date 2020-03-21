@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ExceptionRun {
 
 	enum Menu {
-		MULDIV2, THROWANDCHATCH, INIT, TERM, RANGEERRORTESTER,
+		MULDIV2, THROWANDCHATCH, INIT, TERM, RANGEERRORTESTER, REVERSEERROR,
 	}
 	
 	public static Menu selectMenu() {
@@ -30,6 +30,7 @@ public class ExceptionRun {
 		case INIT: cont.init(); break;
 		case TERM: cont.term(); break;
 		case RANGEERRORTESTER: cont.rangeErrorTester(); break;
+		case REVERSEERROR: cont.reverseArr(); break;
 		}
 	}
 }
