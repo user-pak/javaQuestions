@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Queue;
+import java.util.stream.Collectors;
 
 public class CollectionIterator {
 
@@ -31,7 +32,9 @@ public class CollectionIterator {
 		queue.offer("Hello");
 		getFreqeuncy();
 		
-		
+	    int ages[] = {20, 22, 18, 35, 48, 26, 87, 70};   
+	    int sum = Arrays.stream(ages).boxed().collect(Collectors.summingInt((Integer::intValue)));
+        System.out.println(sum);
 	}
 
 	private static void getFreqeuncy() {
